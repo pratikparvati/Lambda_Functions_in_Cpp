@@ -68,7 +68,7 @@ int main()
 ```
 
 ##### Lambda under the hood
-The compiler replaces the line `std::for_each(vec.begin(), vec.end(), [](int x) { std::cout << x << ' ';});` for the above code as (you can try running the above code in [cppinsights](https://cppinsights.io/)):
+The compiler replaces the line `std::for_each(vec.begin(), vec.end(), [](int x) { std::cout << x << ' ';});` for the above code as:
 
 ```C++
 class anonymous
@@ -87,7 +87,8 @@ public:
 int addNum = 100;
 std::for_each(vec.begin(), vec.end(), anonymous(addNum));
 ```
-The compiler generates an unique **closure object** (or function object) to be replaced as an argument inside `for_each` function. **Capture list** will become a **constructor argument** inside the closure class and the **lambda parameters**(as received from the vector iterator) will become an **argument to `operator()`**.
+
+The same is observed in cppinsight(displays compiler view of the code) [here](https://cppinsights.io/s/3f1fcae1). The compiler generates an unique **closure object** (or function object) to be replaced as an argument inside `for_each` function. **Capture list** will become a **constructor argument** inside the closure class and the **lambda parameters**(as received from the vector iterator) will become an **argument to `operator()`**.
 
 ### Lambda capture list
 These are some examples of typical capture lists:
