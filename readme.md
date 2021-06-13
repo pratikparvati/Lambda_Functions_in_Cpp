@@ -87,7 +87,7 @@ public:
 int addNum = 100;
 std::for_each(vec.begin(), vec.end(), anonymous(addNum));
 ```
-The compiler generates an unique **closer object** (or function object) to be replaced as an argument inside `for_each` function. **Capture list** will become a **constructor argument** inside the closure class and the **lambda parameters**(as received from the vector iterator) will become an **argument to `operator()`**.
+The compiler generates an unique **closure object** (or function object) to be replaced as an argument inside `for_each` function. **Capture list** will become a **constructor argument** inside the closure class and the **lambda parameters**(as received from the vector iterator) will become an **argument to `operator()`**.
 
 ### Lambda capture list
 These are some examples of typical capture lists:
@@ -161,7 +161,7 @@ auto good_lambda = [val]() mutable {
     std::cout << val++ << std::endl;
 };
 
-// the lambda remembers the state of the closer object
+// the lambda remembers the state of the closure object
 good_lambda(); // prints 100
 good_lambda(); // prints 101
 good_lambda(); // prints 102
